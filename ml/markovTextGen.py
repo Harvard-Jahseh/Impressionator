@@ -1,8 +1,18 @@
 import sys
 import markovify
-def main(argv):
+def chooseParams(argv):
+    if argv[0] == 'Donald Trump Twitter':
+        return 'trump.json'
+    elif argv[0] == 'Jaden Smith Twitter':
+        return 'jaden.json'
+    elif argv[0] == 'The Office Script':
+        return 'theoffice.json'
+    else:
+        return 'trump.json'
 
-    with open('./ml/models/jaden.json') as f:
+def main(argv):
+    filePath = './ml/models/' + chooseParams(argv)
+    with open(filePath) as f:
         model_json = f.read()
     text_model = markovify.Text.from_json(model_json)
     print(text_model.make_short_sentence(280))
