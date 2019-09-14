@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var fs = require("fs");
 var path = require("path")
 var kill = require('tree-kill');
+var spawn = require("child_process").spawn
 
 var port = 8765;
 var app = express()
@@ -25,20 +26,9 @@ app.get('/impressionator', function(req, res){
 });
 
 app.post('/api', function(req,res){
-  var inputStr = req.body.sample;
-  console.log(req.body.sample)
-  res.send({success: req.body.sample})
-  // var spawn = require("child_process").spawn;
-  // var pyScript = spawn('python',[PYTHON_SCRIPT_NAME,inputStr]);
-  // console.log(pyScript)
-  // process.stdout.on('data', function(data) {
-  //     var theJSON = '{ "output": "' + data.toString() + '"}';
-  //     res.send(JSON.parse(theJSON));
-  // });
   var theJSON = null
   var inputStr = req.body.sample
-  var spawn = require("child_process").spawn;
-  var pyScript = spawn('python',["-u",path.join(__dirname, PYTHON_SCRIPT_NAME),inputStr]);
+  var pyScript = spawn('python', ['-u', path.join(__dirname, PYTHON_SCRIPT_NAME), inputStr])
   pyScript.stdout.on('data', function(data){
       theJSON = JSON.stringify({output: data.toString()})
   });
@@ -47,9 +37,9 @@ app.post('/api', function(req,res){
   });
   pyScript.stderr.on('close', function(){
     res.send(JSON.parse(theJSON))
+    kill(pyScript.pid);
   });
 
-  kill(pyScript.pid);
 });
 app.listen(process.env.PORT || port);
 console.log("We out here at port " + (process.env.PORT || port));
