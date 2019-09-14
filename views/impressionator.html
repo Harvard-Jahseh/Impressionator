@@ -16,8 +16,10 @@
         <div class="row">
           <div class="col-6 flex-column">
             <h3>Input sample data:</h3>
-            <textarea placeholder="Enter some sample text to process..."></textarea>
-            <button class='btn' type='submit' id='sample-submit'>Submit</button>
+            <form id="sample-form" method="post">
+              <textarea name='sample' placeholder="Enter some sample text to process..."></textarea>
+              <button class='btn' type='submit' id='sample-submit'>Submit</button>
+            </form>
           </div>
           <div class="col-6 flex-column">
             <h3>Generated text:</h3>
@@ -30,5 +32,20 @@
     <footer>
       <p>Made at HackCMU 2019; by Harvey, Bill, Rohan, and DK</p>
     </footer>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#sample-form').submit(function(e) {
+          e.preventDefault();
+
+          var form = $(this);
+
+          console.log(form.serialize())
+          $.ajax({
+            url: '/api',
+            type: 'post',
+          })
+        })
+      });
+    </script>
   </body>
 </html>
