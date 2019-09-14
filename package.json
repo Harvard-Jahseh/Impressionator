@@ -1,0 +1,19 @@
+{
+  "name": "impressionator",
+  "version": "1.0.0",
+  "description": "Web application that takes in speeches from anyone as plain text and creates speeches that mimic that person.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harvard-Jahseh/Impressionator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harvard-Jahseh/Impressionator/issues"
+  },
+  "homepage": "https://github.com/Harvard-Jahseh/Impressionator#readme"
+}
