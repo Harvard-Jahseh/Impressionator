@@ -25,6 +25,16 @@ app.get('/impressionator', function(req, res){
 });
 
 app.post('/api', function(req,res){
+  var inputStr = req.body.sample;
+  console.log(req.body.sample)
+  res.send({success: req.body.sample})
+  // var spawn = require("child_process").spawn;
+  // var pyScript = spawn('python',[PYTHON_SCRIPT_NAME,inputStr]);
+  // console.log(pyScript)
+  // process.stdout.on('data', function(data) {
+  //     var theJSON = '{ "output": "' + data.toString() + '"}';
+  //     res.send(JSON.parse(theJSON));
+  // });
   var theJSON = null
   var inputStr = req.body.sample
   var spawn = require("child_process").spawn;

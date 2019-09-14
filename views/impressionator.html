@@ -36,14 +36,15 @@
       $(document).ready(function() {
         $('#sample-form').submit(function(e) {
           e.preventDefault();
-          var form = $(this);
+          form = $(this)
+          var formData = form.serialize();
           $.ajax({
             url: '/api',
             type: 'post',
             dataType: 'json',
-            data: {'hello': 3},
+            data: {"sample": formData.split('=')[1]},
             success: function(response){
-              $(".output-area").html(response)
+              $(".output-area").html(response.success)
             }
           })
         })
