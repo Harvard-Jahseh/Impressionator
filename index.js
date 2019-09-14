@@ -17,6 +17,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 var PYTHON_SCRIPT_NAME = "filler.py";
+var MARKOV_PY_SCRIPT = "ml/markovTextGen.py"
 
 app.get('/', function(req, res){
   res.render("index.html");
@@ -33,13 +34,29 @@ app.post('/api', function(req,res){
       theJSON = JSON.stringify({output: data.toString()})
   });
   pyScript.stderr.on('data', function(data){
-    console.log('error occurred: ',data);
+    console.log('error occurred: ${data}');
   });
   pyScript.stderr.on('close', function(){
     res.send(JSON.parse(theJSON))
     kill(pyScript.pid);
   });
-
 });
+
+app.post('/api/markov', function(req,res){
+  var theJSON = null
+  var inputStr = req.body.select
+  var pyScript = spawn('python', [path.join(__dirname, MARKOV_PY_SCRIPT), inputStr])
+  pyScript.stdout.on('data', function(data){
+      theJSON = JSON.stringify({output: data.toString()})
+  });
+  pyScript.stderr.on('data', function(data){
+    console.log('error occurred: ', data.toString('hex').match(/../g).join(' '));
+  });
+  pyScript.stderr.on('close', function(){
+    res.send(JSON.parse(theJSON))
+    kill(pyScript.pid);
+  });
+});
+
 app.listen(process.env.PORT || port);
 console.log("We out here at port " + (process.env.PORT || port));
