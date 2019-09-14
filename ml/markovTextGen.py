@@ -7,6 +7,10 @@ def chooseParams(argv):
         return 'jaden.json'
     elif argv[0] == 'The Office Script':
         return 'theoffice.json'
+    elif argv[0] == 'The Bible':
+        return 'bible.json'
+    elif argv[0] == 'Obama State of the Union':
+        return 'obamaSOTU16processed.json'
     else:
         return 'trump.json'
 
