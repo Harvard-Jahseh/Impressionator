@@ -28,7 +28,7 @@ app.get('/impressionator', function(req, res){
 app.post('/api', function(req,res){
   var theJSON = null
   var inputStr = req.body.sample
-  var pyScript = spawn('python', ['-u', path.join(__dirname, PYTHON_SCRIPT_NAME), inputStr])
+  var pyScript = spawn('python', [path.join(__dirname, PYTHON_SCRIPT_NAME), inputStr])
   pyScript.stdout.on('data', function(data){
       theJSON = JSON.stringify({output: data.toString()})
   });

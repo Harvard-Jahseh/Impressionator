@@ -37,12 +37,12 @@
         $('#sample-form').submit(function(e) {
           e.preventDefault();
           form = $(this)
-          var formData = form.serialize();
+          var formData = form.serializeArray();
           $.ajax({
             url: '/api',
             type: 'post',
             dataType: 'json',
-            data: {"sample": formData.split('=')[1]},
+            data: {"sample": formData[0].value},
             success: function(response){
               $(".output-area").html(response.output)
             }
