@@ -9,7 +9,7 @@ nav {
 }
 
 main {
-  height: calc(100% - 100px)
+  height: calc(100% - 50px)
 }
 
 nav a {
@@ -31,6 +31,7 @@ h3 {
 
 .row {
   display: flex;
+  height: calc(100% - 90px);
   padding: 30px 60px;
 }
 
@@ -41,6 +42,7 @@ h3 {
 
 .col-6 {
   width: calc(100%/(12/6));
+  height: calc(100% - 120px);
   margin: 10px;
 }
 
@@ -64,6 +66,7 @@ h3 {
 
 form {
   margin-right: 10px;
+  height: 100%;
 }
 
 textarea {
@@ -73,7 +76,7 @@ textarea {
   padding: 8px;
   color: #2c3e50;
   margin-bottom: 10px;
-  height: 450px;
+  height: 100%;
   width: 100%;
 }
 
@@ -81,7 +84,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 50px;
   width: 100%;
   font-size: 12px;
   background: #2980b9;

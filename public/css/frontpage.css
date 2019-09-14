@@ -1,0 +1,22 @@
+#frontinfobox
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 50px 0px;
+}
+#frontpageinfo
+{
+  width: 800px;
+  text-align: center;
+}
+#frontpageinfo h1
+{
+  margin: 30px;
+}
+#frontpageinfo p
+{
+  font-size: 20px;
+  margin: 15px;
+  color: #666666;
+}
