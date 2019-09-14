@@ -35,7 +35,10 @@ app.post('/api', function(req,res){
   pyScript.stderr.on('data', function(data){
     console.log('error occurred: ',data);
   });
-  res.send(JSON.parse(theJSON))
+  pyScript.stderr.on('close', function(){
+    res.send(JSON.parse(theJSON))
+  });
+
   kill(pyScript.pid);
 });
 app.listen(process.env.PORT || port);
