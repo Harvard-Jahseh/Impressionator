@@ -22,6 +22,8 @@ app.get('/impressionator', function(req, res){
 
 app.post('/api', function(req,res){
   var inputStr = req.params.sample;
+  console.log(req.body)
+  console.log(req.params)
   var spawn = require("child_process").spawn;
   var pyScript = spawn('python',[PYTHON_SCRIPT_NAME,inputStr]);
   process.stdout.on('data', function(data) {
