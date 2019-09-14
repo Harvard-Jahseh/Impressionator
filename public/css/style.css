@@ -92,6 +92,11 @@ form {
   height: 100%;
 }
 
+select {
+  margin: 8px;
+  height: 30px;
+}
+
 .hidden {
   display: none;
   visibility: hidden;

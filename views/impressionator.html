@@ -15,14 +15,27 @@
         </nav>
         <div class="row flex-column">
           <div class="row justify-evenly">
-            <a class="toggle-link active" id="userSample">Provide a sample</a>
-            <a class="toggle-link" id="providedSample">Use an existing sample</a>
+            <a class="toggle-link active" id="userSample">Combine two samples</a>
+            <a class="toggle-link" id="providedSample">Generate from one sample</a>
           </div>
           <div class="row">
             <div class="col-6 flex-column" id="sampleInput">
-              <h3>Input sample data:</h3>
+              <h3>Select two people:</h3>
               <form id="sample-form" method="post">
-                <textarea name='sample' placeholder="Enter some sample text to process..."></textarea>
+                <select name="dataName1">
+                  <option>Donald Trump Twitter</option>
+                  <option>Jaden Smith Twitter</option>
+                  <option>The Office Script</option>
+                  <option>The Bible</option>
+                  <option>Obama State of the Union</option>
+                </select>
+                <select name="dataName2">
+                  <option>Donald Trump Twitter</option>
+                  <option>Jaden Smith Twitter</option>
+                  <option>The Office Script</option>
+                  <option>The Bible</option>
+                  <option>Obama State of the Union</option>
+                </select>
                 <button class='btn' type='submit' id='sample-submit'>Submit</button>
               </form>
             </div>
@@ -34,6 +47,7 @@
                   <option>Jaden Smith Twitter</option>
                   <option>The Office Script</option>
                   <option>The Bible</option>
+                  <option>Obama State of the Union</option>
                 </select>
                 <button class='btn' type='submit' id='sample-submit'>Submit</button>
               </form>
@@ -60,7 +74,8 @@
             url: '/api',
             type: 'post',
             dataType: 'json',
-            data: {"sample": formData[0].value},
+            data: {"data1": formData[0].value,
+                   "data2": formData[1].value},
             success: function(response){
               $(".output-area").html(response.output)
             }

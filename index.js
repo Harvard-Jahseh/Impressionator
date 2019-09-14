@@ -16,7 +16,7 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-var PYTHON_SCRIPT_NAME = "filler.py";
+var PYTHON_SCRIPT_NAME = "ml/markovComboGen.py";
 var MARKOV_PY_SCRIPT = "ml/markovTextGen.py"
 
 app.get('/', function(req, res){
@@ -28,13 +28,14 @@ app.get('/impressionator', function(req, res){
 
 app.post('/api', function(req,res){
   var theJSON = null
-  var inputStr = req.body.sample
-  var pyScript = spawn('python', [path.join(__dirname, PYTHON_SCRIPT_NAME), inputStr])
+  var input1 = req.body.data1
+  var input2 = req.body.data2
+  var pyScript = spawn('python', [path.join(__dirname, PYTHON_SCRIPT_NAME), input1, input2])
   pyScript.stdout.on('data', function(data){
       theJSON = JSON.stringify({output: data.toString()})
   });
   pyScript.stderr.on('data', function(data){
-    console.log('error occurred: ${data}');
+    console.log('error occurred:', data.toString('hex').match(/../g).join(' '));
   });
   pyScript.stderr.on('close', function(){
     res.send(JSON.parse(theJSON))
