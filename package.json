@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Harvard-Jahseh/Impressionator/issues"
   },
-  "homepage": "https://github.com/Harvard-Jahseh/Impressionator#readme"
+  "homepage": "https://github.com/Harvard-Jahseh/Impressionator#readme",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "fs": "0.0.1-security"
+  }
 }
