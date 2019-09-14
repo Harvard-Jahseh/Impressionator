@@ -8,6 +8,11 @@ nav {
   align-items: baseline;
 }
 
+main {
+  height: calc(100% - 50px)
+}
+
+
 nav a {
   color: #ecf0f1;
 }
@@ -27,12 +32,32 @@ h3 {
 
 .row {
   display: flex;
-  padding: 30px 60px;
+  padding: 15px 30px;
 }
 
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.justify-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.toggle-link {
+  cursor: pointer;
+  color: #7f8c8d;
+  transition: border 500ms ease
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+}
+
+.toggle-link.active {
+  color: #2c3e50;
+  text-decoration: underline;
 }
 
 .col-6 {
@@ -48,6 +73,11 @@ h3 {
   color: #ecf0f1;
   margin: auto;
   padding: 10px 15px;
+  cursor: pointer;
+}
+
+.btn .centered{
+  margin: auto;
 }
 
 .output-area {
@@ -57,6 +87,17 @@ h3 {
   font-size: 14px;
 }
 
+form {
+  margin-right: 10px;
+  height: 100%;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
 textarea {
   border-radius: 5px;
   border-color: #bdc3c7;
@@ -64,18 +105,15 @@ textarea {
   padding: 8px;
   color: #2c3e50;
   margin-bottom: 10px;
-  height: 450px;
+  height: 100%;
+  width: 100%;
 }
 
 footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  height: 50px;
   width: 100%;
   font-size: 12px;
   background: #2980b9;

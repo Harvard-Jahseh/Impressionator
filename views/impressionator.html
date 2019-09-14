@@ -3,26 +3,43 @@
 <html>
   <head>
     <title>Impressionator</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/javascripts/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
-    <nav>
-      <h2><a href="/">Impressionator</a></h2>
-      <a class="nav-item" href="/impressionator">Get an Impression</a>
-    </nav>
       <main>
-        <div class="row">
-          <div class="col-6 flex-column">
-            <h3>Input sample data:</h3>
-            <textarea placeholder="Enter some sample text to process..."></textarea>
-            <button class='btn' type='submit' id='sample-submit'>Submit</button>
+        <nav>
+          <h2><a href="/">Impressionator</a></h2>
+          <a class="nav-item" href="/impressionator">Get an Impression</a>
+        </nav>
+        <div class="row flex-column">
+          <div class="row justify-evenly">
+            <a class="toggle-link active" id="userSample">Provide a sample</a>
+            <a class="toggle-link" id="providedSample">Use an existing sample</a>
           </div>
-          <div class="col-6 flex-column">
-            <h3>Generated text:</h3>
-            <div class="output-area">
-              Stuff will appear here once you submit.
+          <div class="row">
+            <div class="col-6 flex-column" id="sampleInput">
+              <h3>Input sample data:</h3>
+              <form id="sample-form" method="post">
+                <textarea name='sample' placeholder="Enter some sample text to process..."></textarea>
+                <button class='btn' type='submit' id='sample-submit'>Submit</button>
+              </form>
+            </div>
+            <div class="col-6 flex-column hidden" id="existingSample">
+              <h3>Select a person:</h3>
+              <form id="select-form">
+                <select name="dataName">
+                  <option>Donald Trump Twitter</option>
+                </select>
+                <button class='btn' type='submit' id='sample-submit'>Submit</button>
+              </form>
+            </div>
+            <div class="col-6 flex-column">
+              <h3>Generated text:</h3>
+              <div class="output-area">
+                Stuff will appear here once you submit.
+              </div>
             </div>
           </div>
         </div>
@@ -30,5 +47,23 @@
     <footer>
       <p>Made at HackCMU 2019; by Harvey, Bill, Rohan, and DK</p>
     </footer>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#sample-form').submit(function(e) {
+          e.preventDefault();
+          form = $(this)
+          var formData = form.serializeArray();
+          $.ajax({
+            url: '/api',
+            type: 'post',
+            dataType: 'json',
+            data: {"sample": formData[0].value},
+            success: function(response){
+              $(".output-area").html(response.output)
+            }
+          })
+        })
+      });
+    </script>
   </body>
 </html>
