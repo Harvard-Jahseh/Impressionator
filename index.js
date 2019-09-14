@@ -5,7 +5,7 @@ var fs = require("fs");
 var port = 8765;
 var app = express();
 
-String PYTHON_SCRIPT_NAME = "./filler.py";
+var PYTHON_SCRIPT_NAME = "./filler.py";
 
 app.use(express.static('public'));
 
