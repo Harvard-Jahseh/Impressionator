@@ -12,11 +12,36 @@
 }
 #frontpageinfo h1
 {
+  color: #2c3e50;
   margin: 30px;
 }
-#frontpageinfo p
+#info-text
 {
   font-size: 20px;
   margin: 15px;
   color: #666666;
+}
+#tidbit-bar
+{
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+.tidbit
+{
+  width: 200px;
+  margin: 10px;
+}
+.tidbit p{
+  color: #666666;
+}
+.tidbit h3 {
+  padding-left: 0px;
+  color: #2c3e50;
+}
+.tidbit a {
+  color: #2980b9;
 }
