@@ -41,9 +41,10 @@
             url: '/api',
             type: 'post',
             dataType: 'json',
-            data: {hello: 'goodbye'}
-          }).done(function(response) {
-            $(".output-area").html(response)
+            data: {'hello': 3},
+            success: function(response){
+              $(".output-area").html(response)
+            }
           })
         })
       });
