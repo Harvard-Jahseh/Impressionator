@@ -5,6 +5,11 @@ var fs = require("fs");
 var port = 8765;
 var app = express();
 
+app.use(express.static(__dirname + '/'));
+app.set('views', __dirname + '/frontend');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 var PYTHON_SCRIPT_NAME = "./filler.py";
 
 app.use(express.static('public'));
