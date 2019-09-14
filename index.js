@@ -31,7 +31,6 @@ app.post('/api', function(req,res){
   var pyScript = spawn('python',["-u",path.join(__dirname, PYTHON_SCRIPT_NAME),inputStr]);
   pyScript.stdout.on('data', function(data){
       theJSON = JSON.stringify({output: data.toString()})
-      res.end()
   });
   pyScript.stderr.on('data', function(data){
     console.log('error occurred: ',data);
